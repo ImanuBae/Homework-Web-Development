@@ -1,0 +1,44 @@
+@model MyMvcApp.Models.StudentViewModel
+
+@{
+    ViewData["Title"] = "Đăng ký chuyên ngành";
+    var majors = ViewBag.Majors as string[] ?? Array.Empty<string>();
+}
+
+<h1>Đăng ký chuyên ngành</h1>
+
+<form asp-action="Index" method="post" class="row g-3">
+    <div class="col-12">
+        <label asp-for="MSSV" class="form-label">MSSV</label>
+        <input asp-for="MSSV" class="form-control" />
+        <span asp-validation-for="MSSV" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="HoTen" class="form-label">Họ tên</label>
+        <input asp-for="HoTen" class="form-control" />
+        <span asp-validation-for="HoTen" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="DiemTB" class="form-label">Điểm TB</label>
+        <input asp-for="DiemTB" class="form-control" step="0.01" type="number" />
+        <span asp-validation-for="DiemTB" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="ChuyenNganh" class="form-label">Chuyên ngành</label>
+        <select asp-for="ChuyenNganh" class="form-select">
+            <option value="">-- Chọn chuyên ngành --</option>
+            @foreach (var major in majors)
+            {
+                <option value="@major">@major</option>
+            }
+        </select>
+        <span asp-validation-for="ChuyenNganh" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Đăng ký</button>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,15 @@
+@model MyMvcApp.Models.StudentViewModel
+
+@{
+    ViewData["Title"] = "Kết quả đăng ký";
+    var count = ViewBag.CountSameMajor ?? 0;
+}
+
+<h1>Kết quả đăng ký</h1>
+
+<div class="alert alert-success">
+    <p>Cảm ơn bạn <strong>@Model.MSSV</strong> - <strong>@Model.HoTen</strong> đã đăng ký chuyên ngành <strong>@Model.ChuyenNganh</strong>.</p>
+    <p>Số lượng sv đã đăng ký ngành giống bạn là: <strong>@count</strong></p>
+</div>
+
+<a asp-controller="Student" asp-action="Index" class="btn btn-secondary">Quay lại</a>

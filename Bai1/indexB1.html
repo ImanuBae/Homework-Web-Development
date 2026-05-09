@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GF Furniture</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleB1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -57,6 +57,68 @@
 
         <section class="content">
             
+            <section class="panel profile-panel" aria-label="Thông tin cá nhân">
+                <h2 class="section-title">THÔNG TIN CÁ NHÂN</h2>
+
+                <div class="info-row">
+                    <div class="info-item">
+                        <div class="info-label">Tên</div>
+                        <div class="info-value"><span id="displayName">Nguyễn Văn A</span></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">MSSV</div>
+                        <div class="info-value"><span id="displayMssv">2380600000</span></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Lớp</div>
+                        <div class="info-value"><span id="displayClass">Web1</span></div>
+                    </div>
+                </div>
+
+                <div class="actions-row">
+                    <button id="updateProfileBtn" type="button" class="btn-detail btn-action">
+                        Cập nhật thông tin
+                    </button>
+                </div>
+            </section>
+
+            <section class="panel interests-panel" aria-label="Sở thích cá nhân">
+                <h2 class="section-title">SỞ THÍCH CÁ NHÂN</h2>
+
+                <div class="form-row">
+                    <input id="interestInput" type="text" class="text-input" placeholder="Nhập sở thích mới">
+                    <button id="addInterestBtn" type="button" class="btn-detail btn-action">Thêm</button>
+                </div>
+
+                <ul id="interestList" class="interest-list">
+                    <li>Nghe nhạc</li>
+                    <li>Đọc sách</li>
+                    <li>Thể thao</li>
+                </ul>
+            </section>
+
+            <section class="panel code-panel" aria-label="Ẩn/Hiện mã nguồn">
+                <div class="code-header">
+                    <h2 class="section-title">ẨN / HIỆN ĐOẠN MÃ NGUỒN</h2>
+                    <button id="toggleCodeBtn" type="button" class="btn-detail btn-action">
+                        Ẩn mã
+                    </button>
+                </div>
+
+                <pre id="codeBlock" class="code-block"><code>function xinChao() {
+  console.log("Xin chào!");
+}</code></pre>
+            </section>
+
+            <section class="panel theme-panel" aria-label="Chế độ giao diện">
+                <div class="theme-header">
+                    <h2 class="section-title">DARK MODE</h2>
+                    <button id="themeToggleBtn" type="button" class="btn-detail btn-action">
+                        Chế độ tối
+                    </button>
+                </div>
+            </section>
+
             <div class="product-grid top-grid">
                 <div class="product-item">
                     <img src="image/san_pham_1.jpg" alt="TKPK 001">
@@ -133,5 +195,6 @@
         </div>
     </footer>
 
+    <script src="baiB1.js" defer></script>
 </body>
 </html>
