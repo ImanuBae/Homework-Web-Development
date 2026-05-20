@@ -1,0 +1,94 @@
+@model RegisterViewModel
+
+@{
+    ViewData["Title"] = "Đăng Ký Tài Khoản";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">@ViewData["Title"]</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <!-- Tên đăng nhập -->
+                        <div class="mb-3">
+                            <label for="Username" class="form-label">Tên đăng nhập</label>
+                            <input type="text" class="form-control" 
+                                   id="Username" asp-for="Username" placeholder="Nhập tên đăng nhập">
+                            <span asp-validation-for="Username" class="invalid-feedback"></span>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="Email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="Email" asp-for="Email" placeholder="example@gmail.com">
+                            <span asp-validation-for="Email" class="invalid-feedback d-block"></span>
+                        </div>
+
+                        <!-- Họ tên -->
+                        <div class="mb-3">
+                            <label for="FullName" class="form-label">Họ tên</label>
+                            <input type="text" class="form-control" id="FullName" asp-for="FullName" placeholder="Nhập họ tên">
+                            <span asp-validation-for="FullName" class="invalid-feedback"></span>
+                        </div>
+
+                        <!-- Mật khẩu -->
+                        <div class="mb-3">
+                            <label for="Password" class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" id="Password" asp-for="Password" placeholder="Nhập mật khẩu">
+                            <small class="form-text text-muted">
+                                ✓ Tối thiểu 8 ký tự<br>
+                                ✓ Có chữ hoa (A-Z)<br>
+                                ✓ Có chữ thường (a-z)<br>
+                                ✓ Có chữ số (0-9)
+                            </small>
+                            <span asp-validation-for="Password" class="invalid-feedback d-block"></span>
+                        </div>
+
+                        <!-- Xác nhận mật khẩu -->
+                        <div class="mb-3">
+                            <label for="ConfirmPassword" class="form-label">Xác nhận mật khẩu</label>
+                            <input type="password" class="form-control" id="ConfirmPassword" asp-for="ConfirmPassword" placeholder="Nhập lại mật khẩu">
+                            <span asp-validation-for="ConfirmPassword" class="invalid-feedback"></span>
+                        </div>
+
+                        <!-- Nút submit -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Đăng Ký</button>
+                        </div>
+
+                        <!-- Link đăng nhập -->
+                        <p class="text-center mt-3">
+                            Đã có tài khoản? <a href="@Url.Action("Login", "Account")">Đăng nhập tại đây</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    .card {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+    .form-text {
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+    .invalid-feedback {
+        display: block;
+        color: #dc3545;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+</style>

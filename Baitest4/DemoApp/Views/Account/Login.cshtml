@@ -1,0 +1,87 @@
+@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Đăng Nhập";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">@ViewData["Title"]</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Hiển thị thông báo lỗi chung -->
+                    @if (!ViewData.ModelState.IsValid && ViewData.ModelState.Values.SelectMany(v => v.Errors).Any())
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <div>@error.ErrorMessage</div>
+                            }
+                        </div>
+                    }
+
+                    <form method="post">
+                        <!-- Tên đăng nhập -->
+                        <div class="mb-3">
+                            <label for="Username" class="form-label">Tên đăng nhập</label>
+                            <input type="text" class="form-control" id="Username" asp-for="Username" placeholder="Nhập tên đăng nhập">
+                            <span asp-validation-for="Username" class="invalid-feedback d-block"></span>
+                        </div>
+
+                        <!-- Mật khẩu -->
+                        <div class="mb-3">
+                            <label for="Password" class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" id="Password" asp-for="Password" placeholder="Nhập mật khẩu">
+                            <span asp-validation-for="Password" class="invalid-feedback d-block"></span>
+                        </div>
+
+                        <!-- Ghi nhớ -->
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="RememberMe" asp-for="RememberMe">
+                            <label class="form-check-label" for="RememberMe">Ghi nhớ tôi</label>
+                        </div>
+
+                        <!-- Nút submit -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">Đăng Nhập</button>
+                        </div>
+
+                        <!-- Link đăng ký -->
+                        <p class="text-center mt-3">
+                            Chưa có tài khoản? <a href="@Url.Action("Register", "Account")">Đăng ký ngay</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Test Accounts -->
+            <div class="alert alert-info mt-3">
+                <strong>Tài khoản test:</strong>
+                <ul class="mb-0">
+                    <li>Username: <code>testuser</code></li>
+                    <li>Password: <code>Test123</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    .card {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+    .invalid-feedback {
+        color: #dc3545;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+</style>

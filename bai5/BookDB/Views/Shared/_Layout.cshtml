@@ -1,0 +1,130 @@
+@{
+    ViewData["Title"] = "BookDB - Quản Lý Sách";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        navbar {
+            background-color: #2c3e50 !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #3498db !important;
+        }
+
+        .card {
+            border: none;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn {
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .table {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 50px;
+            padding: 30px 0;
+        }
+
+        .container-main {
+            min-height: 70vh;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">📚 BookDB</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Home")">Cửa Hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Book")">Quản Lý Sách</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Category")">Quản Lý Danh Mục</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-main py-4">
+        @RenderBody()
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>BookDB</h5>
+                    <p>Cửa hàng sách online chuyên cung cấp các loại sách chất lượng cao</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Liên Kết</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="@Url.Action("Index", "Home")" class="text-white-50">Trang Chủ</a></li>
+                        <li><a href="@Url.Action("Index", "Book")" class="text-white-50">Sách</a></li>
+                        <li><a href="@Url.Action("Index", "Category")" class="text-white-50">Danh Mục</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Liên Hệ</h5>
+                    <p class="text-white-50">
+                        Email: info@bookdb.com<br />
+                        Điện Thoại: 0123-456-789
+                    </p>
+                </div>
+            </div>
+            <hr />
+            <div class="text-center">
+                <p>&copy; 2024 BookDB - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

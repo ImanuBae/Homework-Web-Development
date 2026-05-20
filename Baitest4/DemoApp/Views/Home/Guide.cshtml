@@ -1,0 +1,193 @@
+@{
+    ViewData["Title"] = "Hướng Dẫn Data Annotation";
+}
+
+<div class="container mt-5">
+    <h1>@ViewData["Title"]</h1>
+    
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <!-- Data Annotation là gì? -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">📚 Data Annotation là gì?</h5>
+                </div>
+                <div class="card-body">
+                    <p>Data Annotation (Chú thích dữ liệu) là một tính năng của ASP.NET cho phép bạn:</p>
+                    <ul>
+                        <li>✓ Xác thực dữ liệu trước khi lưu vào database</li>
+                        <li>✓ Hiển thị thông báo lỗi tự động</li>
+                        <li>✓ Định nghĩa quy tắc cho dữ liệu</li>
+                        <li>✓ Tạo form HTML tự động</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Các Attribute phổ biến -->
+            <div class="card mb-4">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">🔑 Các Attribute phổ biến</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Attribute</th>
+                                <th>Mục đích</th>
+                                <th>Ví dụ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>[Required]</code></td>
+                                <td>Bắt buộc nhập</td>
+                                <td><code>[Required(ErrorMessage = "...")]</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>[StringLength]</code></td>
+                                <td>Giới hạn độ dài chuỗi</td>
+                                <td><code>[StringLength(50, MinimumLength = 3)]</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>[EmailAddress]</code></td>
+                                <td>Kiểm tra định dạng email</td>
+                                <td><code>[EmailAddress]</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>[DataType]</code></td>
+                                <td>Chỉ định kiểu dữ liệu</td>
+                                <td><code>[DataType(DataType.Password)]</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>[Compare]</code></td>
+                                <td>So sánh hai trường</td>
+                                <td><code>[Compare("Password")]</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>[RegularExpression]</code></td>
+                                <td>Kiểm tra pattern regex</td>
+                                <td><code>[RegularExpression(@@"^[a-z]+$")]</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>[Display]</code></td>
+                                <td>Tên hiển thị trên form</td>
+                                <td><code>[Display(Name = "Họ tên")]</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Ví dụ từng Attribute -->
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">💡 Ví dụ chi tiết</h5>
+                </div>
+                <div class="card-body">
+                    <div class="bg-light p-3 rounded mb-3">
+                        <strong>[Required]</strong> - Bắt buộc phải nhập
+                        <pre class="mt-2"><code>[Required(ErrorMessage = "Tên đăng nhập là bắt buộc")]
+public string Username { get; set; }</code></pre>
+                        <small>➜ Nếu để trống sẽ hiển thị: "Tên đăng nhập là bắt buộc"</small>
+                    </div>
+
+                    <div class="bg-light p-3 rounded mb-3">
+                        <strong>[StringLength]</strong> - Giới hạn độ dài
+                        <pre class="mt-2"><code>[StringLength(50, MinimumLength = 3)]
+public string Username { get; set; }</code></pre>
+                        <small>➜ Username phải từ 3 đến 50 ký tự</small>
+                    </div>
+
+                    <div class="bg-light p-3 rounded mb-3">
+                        <strong>[EmailAddress]</strong> - Email hợp lệ
+                        <pre class="mt-2"><code>[EmailAddress(ErrorMessage = "Email không hợp lệ")]
+public string Email { get; set; }</code></pre>
+                        <small>➜ Kiểm tra định dạng email (name@domain.com)</small>
+                    </div>
+
+                    <div class="bg-light p-3 rounded mb-3">
+                        <strong>[Compare]</strong> - So sánh hai trường
+                        <pre class="mt-2"><code>[Compare("Password", ErrorMessage = "Mật khẩu không khớp")]
+public string ConfirmPassword { get; set; }</code></pre>
+                        <small>➜ ConfirmPassword phải bằng Password</small>
+                    </div>
+
+                    <div class="bg-light p-3 rounded">
+                        <strong>[RegularExpression]</strong> - Kiểm tra mã hóa mật khẩu
+                        <pre class="mt-2"><code>[RegularExpression(@@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$")]
+public string Password { get; set; }</code></pre>
+                        <small>➜ Mật khẩu phải có chữ hoa, chữ thường, số, ≥6 ký tự</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cách hoạt động -->
+            <div class="card mb-4">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">⚙️ Cách hoạt động</h5>
+                </div>
+                <div class="card-body">
+                    <ol>
+                        <li><strong>Người dùng nhập dữ liệu</strong> vào form</li>
+                        <li><strong>Gửi đến Controller</strong> (POST request)</li>
+                        <li><strong>ASP.NET tự động kiểm tra</strong> các Data Annotation</li>
+                        <li>Nếu <strong>hợp lệ</strong> → Xử lý dữ liệu</li>
+                        <li>Nếu <strong>không hợp lệ</strong> → Trả về form với lỗi</li>
+                    </ol>
+
+                    <div class="alert alert-info mt-3">
+                        <strong>💻 Code kiểm tra:</strong>
+                        <pre><code>if (!ModelState.IsValid) 
+{
+    return View(model); // Trả về form với lỗi
+}
+// Xử lý dữ liệu...</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">🔗 Liên kết</h5>
+                </div>
+                <div class="card-body">
+                    <a href="/Account/Register" class="btn btn-primary btn-block mb-2" style="width: 100%;">Đăng Ký Ngay</a>
+                    <a href="/Account/Login" class="btn btn-success" style="width: 100%;">Đăng Nhập</a>
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5 class="mb-0">📋 Quy tắc mật khẩu</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li>✓ Tối thiểu 6 ký tự</li>
+                        <li>✓ Ít nhất 1 chữ hoa (A-Z)</li>
+                        <li>✓ Ít nhất 1 chữ thường (a-z)</li>
+                        <li>✓ Ít nhất 1 chữ số (0-9)</li>
+                    </ul>
+                    <div class="alert alert-warning mt-3 mb-0">
+                        <small>VD: <code>Test123</code></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    pre {
+        background-color: #f5f5f5;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+    code {
+        font-family: 'Courier New', monospace;
+        color: #d63384;
+    }
+</style>

@@ -1,0 +1,89 @@
+@model BookDB.Models.Book
+
+@{
+    ViewData["Title"] = "Thêm Sách Mới";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1>Thêm Sách Mới</h1>
+
+            <form asp-action="Create" method="post" enctype="multipart/form-data" class="mt-4">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Title" class="form-label">Tên Sách</label>
+                    <input asp-for="Title" class="form-control" placeholder="Nhập tên sách" required />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Author" class="form-label">Tác Giả</label>
+                    <input asp-for="Author" class="form-control" placeholder="Nhập tên tác giả" required />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Description" class="form-label">Mô Tả</label>
+                    <textarea asp-for="Description" class="form-control" rows="3" placeholder="Nhập mô tả"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Price" class="form-label">Giá (đ)</label>
+                            <input asp-for="Price" class="form-control" placeholder="Nhập giá" type="number" required />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Quantity" class="form-label">Số Lượng</label>
+                            <input asp-for="Quantity" class="form-control" placeholder="Nhập số lượng" type="number" required />
+                            <span asp-validation-for="Quantity" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="PublicationDate" class="form-label">Ngày Xuất Bản</label>
+                            <input asp-for="PublicationDate" class="form-control" type="date" required />
+                            <span asp-validation-for="PublicationDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="CategoryId" class="form-label">Danh Mục</label>
+                            <select asp-for="CategoryId" class="form-select" required>
+                                <option value="">-- Chọn danh mục --</option>
+                                @if (ViewBag.Categories != null)
+                                {
+                                    @foreach (var category in ViewBag.Categories)
+                                    {
+                                        <option value="@category.Id">@category.Name</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Ảnh Bìa</label>
+                    <input type="file" name="imageFile" class="form-control" accept="image/*" />
+                    <div class="form-text">Chấp nhận: JPG, PNG, GIF, WebP. Để trống nếu không có ảnh.</div>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">Thêm Sách</button>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Hủy</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

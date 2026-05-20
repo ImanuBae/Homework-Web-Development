@@ -1,0 +1,49 @@
+@model IEnumerable<BookDB.Models.Book>
+
+@{
+    ViewData["Title"] = "Quản Lý Sách";
+}
+
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1>Quản Lý Sách</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="@Url.Action("Create")" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Thêm Sách Mới
+            </a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Tên Sách</th>
+                    <th>Tác Giả</th>
+                    <th>Danh Mục</th>
+                    <th>Giá</th>
+                    <th>Số Lượng</th>
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.Author</td>
+                        <td>@item.Category?.Name</td>
+                        <td>@item.Price.ToString("N0") đ</td>
+                        <td><span class="badge bg-info">@item.Quantity</span></td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-sm btn-warning">Sửa</a>
+                            <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-sm btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

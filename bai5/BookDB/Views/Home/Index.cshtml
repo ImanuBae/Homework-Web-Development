@@ -1,0 +1,82 @@
+@model List<BookDB.Models.Book>
+
+@{
+    ViewData["Title"] = "Trang Chủ";
+    var categories = ViewBag.Categories as List<BookDB.Models.Category> ?? new List<BookDB.Models.Category>();
+}
+
+<div class="container mt-4">
+    <div class="row">
+
+        <div class="col-md-3">
+            <h5 class="fw-bold mb-3">Chủ đề</h5>
+            <ul class="list-unstyled">
+                @foreach (var cat in categories)
+                {
+                    <li class="mb-1">
+                        <a href="@Url.Action("ByCategory", "Home", new { id = cat.Id })"
+                           class="text-decoration-none text-dark">
+                            @cat.Name (@cat.Books.Count)
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="col-md-9">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold mb-0">
+                    @(ViewBag.CategoryName != null ? (string)ViewBag.CategoryName : "Thêm mới")
+                </h4>
+                <a href="@Url.Action("Create", "Book")" class="btn btn-success btn-sm">+ Thêm mới</a>
+            </div>
+
+            <div class="row">
+                @if (Model != null && Model.Count > 0)
+                {
+                    @foreach (var book in Model)
+                    {
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card h-100 shadow-sm">
+                                @if (!string.IsNullOrEmpty(book.ImageUrl))
+                                {
+                                    <img src="@book.ImageUrl" class="card-img-top"
+                                         style="height:180px; object-fit:cover;" alt="@book.Title" />
+                                }
+                                else
+                                {
+                                    <div class="bg-light d-flex align-items-center justify-content-center"
+                                         style="height:180px; color:#aaa; font-size:14px;">
+                                        Chưa có ảnh
+                                    </div>
+                                }
+
+                                <div class="card-body pb-0">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <h6 class="card-title mb-1" style="font-size:14px;">@book.Title</h6>
+                                        <a href="@Url.Action("Edit", "Book", new { id = book.Id })"
+                                           class="badge bg-secondary text-decoration-none ms-1" style="font-size:11px; white-space:nowrap;">Edit</a>
+                                    </div>
+                                    <p class="card-text text-muted mb-1" style="font-size:13px;">Tác giả: @book.Author</p>
+                                    <p class="card-text mb-0" style="font-size:13px;">Thể loại: @book.Category?.Name</p>
+                                </div>
+
+                                <div class="card-footer bg-white border-top d-flex gap-2 pt-2">
+                                    <a href="@Url.Action("Details", "Home", new { id = book.Id })"
+                                       class="btn btn-sm btn-primary flex-fill">Chi tiết</a>
+                                    <a href="@Url.Action("Delete", "Book", new { id = book.Id })"
+                                       class="btn btn-sm btn-danger flex-fill">Xóa</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-info">Không có sách nào trong chủ đề này.</div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

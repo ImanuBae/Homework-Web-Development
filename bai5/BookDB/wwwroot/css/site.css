@@ -1,0 +1,27 @@
+/* Site Styles */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container-main {
+    min-height: 70vh;
+}
+
+.card {
+    border: none;
+    border-radius: 8px;
+}
+
+.table {
+    background-color: white;
+    border-radius: 8px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

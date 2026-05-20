@@ -1,0 +1,51 @@
+# Build results
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# NuGet
+*.nupkg
+*.nuget.props
+*.nuget.targets
+
+# Visual Studio cache/options
+.vs/
+.vscode/
+*.sln.docstates
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VisualState.xml
+
+# Rider
+.idea/
+*.sln.iml
+
+# Database
+*.mdf
+*.ldf
+*.mdb
+
+# Environment variables
+.env
+.env.local
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Local database
+app.db
+BookDB.db
+
+# Package
+packages/

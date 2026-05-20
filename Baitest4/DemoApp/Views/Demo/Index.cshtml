@@ -1,0 +1,50 @@
+@model List<DemoApp.Models.Actor>
+
+@{
+    ViewData["Title"] = "Demo - Sử dụng vòng lặp, lệnh if-else";
+}
+
+<div class="container mt-5">
+    <h1>@ViewData["Title"]</h1>
+    
+    <ul>
+        @foreach (var actor in Model)
+        {
+            <li>
+                <strong>@actor.Name</strong> - Chiều cao: @actor.Height cm - Vai diễn: 
+                @if (actor.Height >= 160)
+                {
+                    <strong>@actor.Role</strong>
+                }
+                else
+                {
+                    @actor.Role
+                }
+            </li>
+            <li>
+                @if (actor.Height <= 160)
+                {
+                    <span class="badge bg-success">Cao</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary">Thấp</span>
+                }
+            </li>
+        }
+    </ul>
+</div>
+
+<style>
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    li {
+        margin: 10px 0;
+        padding: 10px;
+        background-color: #f5f5f5;
+        border-left: 4px solid #007bff;
+    }
+</style>
